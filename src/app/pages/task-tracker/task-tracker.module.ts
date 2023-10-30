@@ -3,7 +3,7 @@ import { TaskTrackerPage } from './task-tracker.page';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { ObjetivesComponent } from './components/objetives/objetives.component';
-import { DailiessComponent } from './components/dailies/dailies.component';
+import { DailiesComponent } from './components/dailies/dailies.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -12,7 +12,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [
     TaskTrackerPage,
     ObjetivesComponent,
-    DailiessComponent,
+    DailiesComponent,
     TasksComponent,
   ],
   exports: [TaskTrackerPage],
