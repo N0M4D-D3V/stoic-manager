@@ -1,3 +1,7 @@
-<div>
-  <h1>Objetives Component!</h1>
+<div class="px-2">
+  <app-card
+    class="text-center"
+    *ngFor="let item of objetives"
+    [config]="item"
+  ></app-card>
 </div>
