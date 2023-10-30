@@ -13,14 +13,25 @@
   <div class="offcanvas-body h-100 px-0">
     <div class="list-group">
       <a
-        href="#"
-        class="list-group-item list-group-item-action active"
-        aria-current="true"
+        (click)="navigate('/task-tracker')"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+        class="list-group-item list-group-item-action"
+        [ngClass]="{ active: currentPath === '/task-tracker' }"
       >
         Task tracker
       </a>
-      <a href="#" class="list-group-item list-group-item-action">Schedule</a>
-      <a href="#" class="list-group-item list-group-item-action">To do</a>
+      <a
+        (click)="navigate('/schedule')"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+        class="list-group-item list-group-item-action"
+        [ngClass]="{ active: currentPath === '/schedule' }"
+        >Schedule</a
+      >
+      <a class="list-group-item list-group-item-action disabled">To do</a>
+      <a class="list-group-item list-group-item-action disabled">Diary</a>
+      <a class="list-group-item list-group-item-action disabled">Learn</a>
     </div>
   </div>
 </div>
