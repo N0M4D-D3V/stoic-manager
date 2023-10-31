@@ -1,30 +1,18 @@
-import { Component } from '@angular/core';
-import { CardConfig } from 'src/app/shared/components/card/card.interface';
+import { Component, OnInit } from '@angular/core';
+import { CardConfig } from 'src/app/shared/interfaces/card.interface';
+import { TasksService } from 'src/app/shared/services/tasks.service';
 
 @Component({
   selector: 'app-objetives',
   templateUrl: './objetives.component.html',
   styleUrls: ['./objetives.component.scss'],
 })
-export class ObjetivesComponent {
-  public objetives: CardConfig[] = [
-    {
-      bootstrap: 'border-primary',
-      title: 'Objetivo 12 semanas',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      bootstrap: 'border-secondary',
-      title: 'Objetivo de esta semana',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      bootstrap: 'border-success',
-      title: 'Objetivo del día',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-  ];
+export class ObjetivesComponent implements OnInit {
+  public objetives: CardConfig[] = [];
+
+  constructor(private readonly tasksService: TasksService) {}
+
+  ngOnInit(): void {
+    this.objetives = this.tasksService.getObjetives();
+  }
 }

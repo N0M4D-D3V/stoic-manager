@@ -1,47 +1,18 @@
-import { Component } from '@angular/core';
-import { CardConfig } from 'src/app/shared/components/card/card.interface';
+import { Component, OnInit } from '@angular/core';
+import { CardConfig } from 'src/app/shared/interfaces/card.interface';
+import { TasksService } from 'src/app/shared/services/tasks.service';
 
 @Component({
   selector: 'app-dailies',
   templateUrl: './dailies.component.html',
   styleUrls: ['./dailies.component.scss'],
 })
-export class DailiesComponent {
-  public dailies: CardConfig[] = [
-    {
-      title: 'Tocar la guitarra',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      title: 'Trabajar',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      title: 'Entrenar',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      title: 'Dropsher',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      title: 'Programar',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      title: 'Estiramientos',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-    {
-      title: 'Leer',
-      description:
-        'Lorem ipsum temper fideles vade retro mortificatum lorem impum temper fidelis.',
-    },
-  ];
+export class DailiesComponent implements OnInit {
+  public dailies: CardConfig[] = [];
+
+  constructor(private readonly tasksService: TasksService) {}
+
+  ngOnInit(): void {
+    this.dailies = this.tasksService.getDailies();
+  }
 }

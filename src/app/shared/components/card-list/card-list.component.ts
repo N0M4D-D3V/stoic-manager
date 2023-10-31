@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CardConfig } from 'src/app/shared/components/card/card.interface';
+import { CardConfig } from '../../interfaces/card.interface';
 
 @Component({
   selector: 'app-card-list',
@@ -8,4 +8,11 @@ import { CardConfig } from 'src/app/shared/components/card/card.interface';
 })
 export class CardListComponent {
   @Input() configList!: CardConfig[];
+
+  public onAdd(): void {
+    this.configList.push({
+      title: 'Title',
+      description: 'Touch for edit',
+    });
+  }
 }

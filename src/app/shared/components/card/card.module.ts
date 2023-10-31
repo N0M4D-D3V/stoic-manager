@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CardComponent } from './card.component';
+import { CardEditComponent } from './card-edit/card-edit.component';
+import { CommonModule } from '@angular/common';
+import { DialogModule } from '@angular/cdk/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [CardComponent],
-  exports: [CardComponent],
-  imports: [],
+  declarations: [CardComponent, CardEditComponent],
+  exports: [CardComponent, CardEditComponent],
+  imports: [CommonModule, DialogModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [],
 })
