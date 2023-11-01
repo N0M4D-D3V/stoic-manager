@@ -8,6 +8,8 @@ export interface CardConfig {
   link?: string;
   editable?: boolean;
   bootstrap?: string;
+
+  schedule?: Date;
 }
 
 export enum CardType {
