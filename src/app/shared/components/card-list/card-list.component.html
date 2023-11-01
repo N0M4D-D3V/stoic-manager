@@ -3,6 +3,7 @@
     class="text-center"
     *ngFor="let item of configList"
     [config]="item"
+    (dialogClosed)="onDialogClosed($event)"
   ></app-card>
 </div>
 <div class="text-center w-100 mt-5" *ngIf="!configList.length">

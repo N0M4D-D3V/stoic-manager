@@ -13,8 +13,10 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationStart)
-        this.title = event.url.replaceAll('/', '').replaceAll('-', ' ');
+      if (event instanceof NavigationStart) {
+        const splitted: string[] = event.url.split('/');
+        this.title = splitted[splitted.length - 1].replaceAll('-', ' ');
+      }
     });
   }
 }

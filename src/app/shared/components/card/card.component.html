@@ -1,6 +1,6 @@
 <div class="card my-2 {{ config.bootstrap }}" (click)="onEditCard()">
   <div class="card-body">
-    <h1 class="card-title">{{ config.title }}</h1>
-    <p class="card-text">{{ config.description }}</p>
+    <h1 class="card-title">{{ config.title || "Title" }}</h1>
+    <p class="card-text">{{ config.description || "Touch and edit!" }}</p>
   </div>
 </div>

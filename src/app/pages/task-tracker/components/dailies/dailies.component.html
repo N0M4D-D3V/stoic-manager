@@ -1,1 +1,4 @@
-<app-card-list [configList]="dailies"></app-card-list>
+<app-card-list
+  [configList]="dailies"
+  (updateList)="onUpdateList($event)"
+></app-card-list>

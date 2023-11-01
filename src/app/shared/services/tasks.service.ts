@@ -1,34 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Objetive } from '../interfaces/objetive.interface';
-import { Daily } from '../interfaces/daily.interface';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { CardConfig, CardType } from '../interfaces/card.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  private dailies: Daily[] = [];
-  private objetives: Objetive[] = [
+  private dailiesBS: BehaviorSubject<CardConfig[]> = new BehaviorSubject<
+    CardConfig[]
+  >([]);
+  private objetivesBS: BehaviorSubject<CardConfig[]> = new BehaviorSubject<
+    CardConfig[]
+  >([
     {
+      id: 0,
+      type: CardType.Objetive,
       title: 'Objetivo 12 semanas',
       description: 'Tu objetivo a 12 semanas',
     },
     {
+      id: 1,
+      type: CardType.Objetive,
       title: 'Objetivo semanal',
       description: 'Tu objetivo de esta semana',
     },
     {
+      id: 2,
+      type: CardType.Objetive,
       title: 'Objetivo del día',
       description: 'Tu objetivo de hoy',
     },
-  ];
+  ]);
+
+  public $dailies: Observable<CardConfig[]> = this.dailiesBS.asObservable();
+  public $objetives: Observable<CardConfig[]> = this.objetivesBS.asObservable();
 
   constructor() {}
 
-  public getObjetives(): Objetive[] {
-    return this.objetives;
+  public updateDailies(dailies: CardConfig[]): void {
+    this.dailiesBS.next(dailies);
   }
 
-  public getDailies(): Daily[] {
-    return this.dailies;
+  public updateObjetives(objetives: CardConfig[]): void {
+    this.objetivesBS.next(objetives);
   }
 }

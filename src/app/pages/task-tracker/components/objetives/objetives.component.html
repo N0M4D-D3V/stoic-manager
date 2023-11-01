@@ -1,1 +1,4 @@
-<app-card-list [configList]="objetives"></app-card-list>
+<app-card-list
+  [configList]="objetives"
+  (updateList)="onUpdateList($event)"
+></app-card-list>
