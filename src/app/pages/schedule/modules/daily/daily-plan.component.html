@@ -15,7 +15,7 @@
           [formControlName]="i"
         />
       </div>
-      <hr />
+      <hr class="text-primary" />
 
       <p>¿Qué obstáculos pueden surgir hoy?¿Cómo responderé ante ellos?</p>
       <button class="btn btn-primary my-2" (click)="addObstacle()">
@@ -46,7 +46,7 @@
           [formControlName]="i"
         />
       </div>
-      <hr />
+      <hr class="text-primary" />
 
       <p>¿Qué actividades no pude completar?¿Por qué?¿Cuándo las haré?</p>
       <div formArrayName="uncompleted">
@@ -58,11 +58,11 @@
           [formControlName]="i"
         />
       </div>
-      <hr />
+      <hr class="text-primary" />
 
       <p>¿Qué cosas hice bien hoy?</p>
       <textarea class="form-control" formControlName="welldone"></textarea>
-      <hr />
+      <hr class="text-primary" />
 
       <p>
         ¿En qué cosas puedo mejorar o no respondí como debería?¿Cómo evito que
