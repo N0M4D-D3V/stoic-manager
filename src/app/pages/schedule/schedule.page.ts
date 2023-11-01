@@ -14,6 +14,7 @@ export class SchedulePage {
       title: '12 Weeks Planning',
       description: 'The way of build a 12 week plan',
       link: '/schedule/twelve-weeks-plan',
+      bootstrap: 'text-bg-primary',
     },
     {
       id: 1,
@@ -22,6 +23,7 @@ export class SchedulePage {
       description:
         'Prepare yourself for the week. Plan it following the correct way.',
       link: '/schedule/one-week-plan',
+      bootstrap: 'text-bg-secondary',
     },
     {
       id: 2,
@@ -29,6 +31,7 @@ export class SchedulePage {
       title: 'Daily Planning',
       description: 'Start your day by planning your main and secondary tasks.',
       link: '/schedule/daily-plan',
+      bootstrap: 'text-bg-success',
     },
   ];
 }

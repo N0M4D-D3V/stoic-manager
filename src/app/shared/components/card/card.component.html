@@ -1,4 +1,7 @@
-<div class="card my-2 {{ config.bootstrap }}" (click)="onEditCard()">
+<div
+  class="card my-2 {{ config.bootstrap }} animate__animated animate__fadeIn"
+  (click)="onEditCard()"
+>
   <div class="card-body">
     <h1 class="card-title">{{ config.title || "Title" }}</h1>
     <p class="card-text">{{ config.description || "Touch and edit!" }}</p>
