@@ -29,7 +29,6 @@ export class CardComponent implements OnDestroy {
   ) {}
 
   public onEditCard(): void {
-    console.log(this.config.link);
     if (this.config.link) this.router.navigate([`${this.config.link}`]);
     if (!this.config.editable) return;
 

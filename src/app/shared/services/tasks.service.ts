@@ -17,18 +17,21 @@ export class TasksService {
       type: CardType.Objetive,
       title: 'Objetivo 12 semanas',
       description: 'Tu objetivo a 12 semanas',
+      bootstrap: 'text-bg-primary',
     },
     {
       id: 1,
       type: CardType.Objetive,
       title: 'Objetivo semanal',
       description: 'Tu objetivo de esta semana',
+      bootstrap: 'text-bg-secondary',
     },
     {
       id: 2,
       type: CardType.Objetive,
       title: 'Objetivo del día',
       description: 'Tu objetivo de hoy',
+      bootstrap: 'text-bg-success',
     },
   ]);
 
