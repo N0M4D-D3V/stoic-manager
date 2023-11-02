@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CardConfig, CardType } from 'src/app/shared/interfaces/card.interface';
+import { Card } from 'src/app/shared/interfaces/card.interface';
 
 @Component({
   selector: 'app-schedule',
@@ -7,31 +7,35 @@ import { CardConfig, CardType } from 'src/app/shared/interfaces/card.interface';
   styleUrls: ['./schedule.page.scss'],
 })
 export class SchedulePage {
-  public planningOptions: CardConfig[] = [
+  public planningOptions: Card[] = [
     {
-      id: 0,
-      type: CardType.Schedule,
-      title: '12 Weeks Planning',
-      description: 'The way of build a 12 week plan',
-      link: '/schedule/twelve-weeks-plan',
-      bootstrap: 'text-bg-primary',
+      task: {
+        title: '12 Weeks Planning',
+        description: 'The way of build a 12 week plan',
+      },
+      config: {
+        link: '/schedule/twelve-weeks-plan',
+        bootstrap: 'text-bg-primary',
+      },
     },
     {
-      id: 1,
-      type: CardType.Schedule,
-      title: '1 Week Planning',
-      description:
-        'Prepare yourself for the week. Plan it following the correct way.',
-      link: '/schedule/one-week-plan',
-      bootstrap: 'text-bg-secondary',
+      task: {
+        title: '1 Week Planning',
+        description:
+          'Prepare yourself for the week. Plan it following the correct way.',
+      },
+      config: {
+        link: '/schedule/one-week-plan',
+        bootstrap: 'text-bg-secondary',
+      },
     },
     {
-      id: 2,
-      type: CardType.Schedule,
-      title: 'Daily Planning',
-      description: 'Start your day by planning your main and secondary tasks.',
-      link: '/schedule/daily-plan',
-      bootstrap: 'text-bg-success',
+      task: {
+        title: 'Daily Planning',
+        description:
+          'Start your day by planning your main and secondary tasks.',
+      },
+      config: { link: '/schedule/daily-plan', bootstrap: 'text-bg-success' },
     },
   ];
 }

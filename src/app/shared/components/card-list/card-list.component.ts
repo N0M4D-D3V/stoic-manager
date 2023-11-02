@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CardConfig } from '../../interfaces/card.interface';
+import { Card } from '../../interfaces/card.interface';
+import { Task } from '../../interfaces/task.interface';
 
 @Component({
   selector: 'app-card-list',
@@ -7,24 +8,18 @@ import { CardConfig } from '../../interfaces/card.interface';
   styleUrls: ['./card-list.component.scss'],
 })
 export class CardListComponent {
-  @Input() configList!: CardConfig[];
+  @Input() configList!: Card[];
 
-  @Output() updateList: EventEmitter<CardConfig[]> = new EventEmitter<
-    CardConfig[]
-  >();
+  @Output() updateList: EventEmitter<Card[]> = new EventEmitter<Card[]>();
 
-  public onDialogClosed(res: CardConfig): void {
+  public onDialogClosed(res: Task): void {
     const index: number = this.configList.findIndex(
-      (item: CardConfig) => item.id === res.id
+      (item: Card) => item.task.id === res.id
     );
 
     if (index !== -1) {
-      this.configList[index] = res;
+      this.configList[index].task = res;
       this.updateList.emit(this.configList);
     }
-  }
-
-  public onAdd(): void {
-    this.updateList.emit([]);
   }
 }

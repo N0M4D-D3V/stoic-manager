@@ -1,50 +1,59 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { CardConfig, CardType } from '../interfaces/card.interface';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Task, TaskStatus, TaskType } from '../interfaces/task.interface';
+import { Card } from '../interfaces/card.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksService {
-  private dailiesBS: BehaviorSubject<CardConfig[]> = new BehaviorSubject<
-    CardConfig[]
-  >([]);
-  private objetivesBS: BehaviorSubject<CardConfig[]> = new BehaviorSubject<
-    CardConfig[]
-  >([
+  private dailiesBS: Subject<Card[]> = new Subject<Card[]>();
+  private objetivesBS: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([
     {
-      id: 0,
-      type: CardType.Objetive,
-      title: 'Objetivo 12 semanas',
-      description: 'Tu objetivo a 12 semanas',
-      bootstrap: 'text-bg-primary',
+      task: {
+        id: 0,
+        type: TaskType.Objetive,
+        status: TaskStatus.Uncompleted,
+        createdAt: new Date(),
+        scheduleAt: new Date(),
+        title: 'Objetivo 12 semanas',
+        description: 'Tu objetivo a 12 semanas',
+      },
     },
     {
-      id: 1,
-      type: CardType.Objetive,
-      title: 'Objetivo semanal',
-      description: 'Tu objetivo de esta semana',
-      bootstrap: 'text-bg-secondary',
+      task: {
+        id: 1,
+        type: TaskType.Objetive,
+        status: TaskStatus.Uncompleted,
+        createdAt: new Date(),
+        scheduleAt: new Date(),
+        title: 'Objetivo semanal',
+        description: 'Tu objetivo de esta semana',
+      },
     },
     {
-      id: 2,
-      type: CardType.Objetive,
-      title: 'Objetivo del día',
-      description: 'Tu objetivo de hoy',
-      bootstrap: 'text-bg-success',
+      task: {
+        id: 2,
+        type: TaskType.Objetive,
+        status: TaskStatus.Uncompleted,
+        createdAt: new Date(),
+        scheduleAt: new Date(),
+        title: 'Objetivo del día',
+        description: 'Tu objetivo de hoy',
+      },
     },
   ]);
 
-  public $dailies: Observable<CardConfig[]> = this.dailiesBS.asObservable();
-  public $objetives: Observable<CardConfig[]> = this.objetivesBS.asObservable();
+  public $dailies: Observable<Card[]> = this.dailiesBS.asObservable();
+  public $objetives: Observable<Card[]> = this.objetivesBS.asObservable();
 
   constructor() {}
 
-  public updateDailies(dailies: CardConfig[]): void {
+  public updateDailies(dailies: Card[]): void {
     this.dailiesBS.next(dailies);
   }
 
-  public updateObjetives(objetives: CardConfig[]): void {
+  public updateObjetives(objetives: Card[]): void {
     this.objetivesBS.next(objetives);
   }
 }

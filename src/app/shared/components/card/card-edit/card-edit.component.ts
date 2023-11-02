@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
-import { CardConfig } from '../../../interfaces/card.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Task } from 'src/app/shared/interfaces/task.interface';
 
 @Component({
   selector: 'app-card-edit',
@@ -13,8 +13,8 @@ export class CardEditComponent implements OnInit {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly dialogRef: DialogRef<CardConfig>,
-    @Inject(DIALOG_DATA) private data: CardConfig
+    private readonly dialogRef: DialogRef<Task>,
+    @Inject(DIALOG_DATA) private data: Task
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class CardEditComponent implements OnInit {
   }
 
   public onConfirm(): void {
-    const value: CardConfig = this.cardConfigForm.value;
+    const value: Task = this.cardConfigForm.value;
     this.dialogRef.close(value);
   }
 

@@ -10,6 +10,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { CardEditComponent } from './card-edit/card-edit.component';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Task } from '../../interfaces/task.interface';
 
 @Component({
   selector: 'app-card',
@@ -19,9 +20,10 @@ import { Router } from '@angular/router';
 export class CardComponent implements OnDestroy {
   private subDialogClosed!: Subscription;
 
-  @Input() config!: CardConfig;
-  @Output() dialogClosed: EventEmitter<CardConfig> =
-    new EventEmitter<CardConfig>();
+  @Input() config: CardConfig | undefined;
+  @Input() task!: Task;
+
+  @Output() dialogClosed: EventEmitter<Task> = new EventEmitter<Task>();
 
   constructor(
     private readonly router: Router,
@@ -29,10 +31,10 @@ export class CardComponent implements OnDestroy {
   ) {}
 
   public onEditCard(): void {
-    if (this.config.link) this.router.navigate([`${this.config.link}`]);
-    if (!this.config.editable) return;
+    if (this.config?.link) this.router.navigate([`${this.config.link}`]);
+    if (!this.task.editable) return;
 
-    const dialogRef = this.dialog.open<CardConfig>(CardEditComponent, {
+    const dialogRef = this.dialog.open<Task>(CardEditComponent, {
       width: '90%',
       data: this.config,
     });
@@ -40,7 +42,7 @@ export class CardComponent implements OnDestroy {
     this.subDialogClosed = dialogRef.closed.subscribe((res) => {
       if (res)
         this.dialogClosed.emit({
-          ...this.config,
+          ...this.task,
           title: res.title,
           description: res.description,
         });

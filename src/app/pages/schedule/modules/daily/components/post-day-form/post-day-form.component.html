@@ -1,0 +1,77 @@
+<div
+  class="card border-primary text-center animate__animated animate__backInRight"
+>
+  <div class="card-header text-bg-primary">Final de la Jornada</div>
+  <div class="card-body" [formGroup]="postform">
+    <p class="fw-bold text-success">Tareas Completas</p>
+    <div
+      *ngFor="let task of completed"
+      class="mb-2 animate__animated animate__flipInX"
+    >
+      <div>
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Título..."
+            [value]="task.title"
+          />
+          <span class="input-group-text text-success">
+            <i class="bi bi-x-lg"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-warning" *ngIf="completed.length === 0">
+      <i class="bi bi-exclamation-triangle"></i> No se completó ninguna tarea
+      <i class="bi bi-exclamation-triangle"></i>
+    </div>
+    <hr class="text-primary" />
+
+    <p class="fw-bold text-danger">Tareas Incompletas</p>
+    <div class="text-center text-success" *ngIf="uncompleted.length === 0">
+      <i class="bi bi-emoji-smile-fill"></i> Todas las tareas se completaron
+      <i class="bi bi-emoji-smile-fill"></i>
+    </div>
+    <div
+      formArrayName="uncompleted"
+      *ngFor="let task of uncompleted.controls; let i = index"
+      class="mb-2"
+    >
+      <div [formGroupName]="i">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Título..."
+            formControlName="title"
+          />
+          <span class="input-group-text text-danger">
+            <i class="bi bi-exclamation-lg"></i>
+          </span>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">¿Cuándo lo harás?</span>
+          <input type="date" class="form-control" formControlName="schedule" />
+        </div>
+        <textarea
+          formControlName="reason"
+          class="form-control"
+          placeholder="Reflexiona sobre por qué no completaste la tarea"
+        ></textarea>
+        <span class="text-center"><i class="bi bi-three-dots"></i></span>
+      </div>
+    </div>
+    <hr class="text-primary" />
+
+    <p>¿Qué cosas hice bien hoy?</p>
+    <textarea class="form-control" formControlName="welldone"></textarea>
+    <hr class="text-primary" />
+
+    <p>
+      ¿En qué cosas puedo mejorar o no respondí como debería?¿Cómo evito que se
+      repita?
+    </p>
+    <textarea class="form-control" formControlName="wrongdone"></textarea>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CardConfig, CardType } from 'src/app/shared/interfaces/card.interface';
+import { Card } from 'src/app/shared/interfaces/card.interface';
+import { Task } from 'src/app/shared/interfaces/task.interface';
 import { TasksService } from 'src/app/shared/services/tasks.service';
 
 @Component({
@@ -11,27 +12,18 @@ import { TasksService } from 'src/app/shared/services/tasks.service';
 export class ObjetivesComponent implements OnInit, OnDestroy {
   private subObjetives!: Subscription;
 
-  public objetives: CardConfig[] = [];
+  public objetives: Card[] = [];
 
   constructor(private readonly tasksService: TasksService) {}
 
   ngOnInit(): void {
     this.subObjetives = this.tasksService.$objetives.subscribe(
-      (res: CardConfig[]) => (this.objetives = res)
+      (res: Card[]) => (this.objetives = res)
     );
   }
 
-  public onUpdateList(res: CardConfig[]): void {
-    if (res.length === 0) {
-      this.tasksService.updateDailies([
-        {
-          id: 0,
-          type: CardType.Objetive,
-          title: '',
-          description: '',
-        },
-      ]);
-    } else this.tasksService.updateDailies(res);
+  public onUpdateList(res: Card[]): void {
+    this.tasksService.updateDailies(res);
   }
 
   ngOnDestroy(): void {

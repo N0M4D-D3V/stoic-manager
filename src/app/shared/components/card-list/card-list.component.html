@@ -2,12 +2,14 @@
   <app-card
     class="text-center"
     *ngFor="let item of configList"
-    [config]="item"
+    [config]="item.config"
+    [task]="item.task"
     (dialogClosed)="onDialogClosed($event)"
   ></app-card>
 </div>
-<div class="text-center w-100 mt-5" *ngIf="!configList.length">
-  <button class="btn btn-lg btn-primary w-50" (click)="onAdd()">
-    <i class="bi bi-plus-circle"></i>
-  </button>
+<div
+  class="text-center w-100 mt-5 text-success fw-bold"
+  *ngIf="!configList.length"
+>
+  NO HAY TAREAS <i class="bi bi-bookmarks-fill"></i>
 </div>
