@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { getTomorrowDate } from 'src/app/shared/functions/time.functions';
 import {
   Task,
   TaskStatus,
@@ -52,8 +53,6 @@ export class PostDayFormComponent implements OnInit {
   constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit(): void {
-    const currentDate: string = formatDate(new Date(), 'yyyy-MM-dd', 'en');
-
     this.completed = this.tasks.filter(
       (task: Task) => task.status === TaskStatus.Completed
     );
@@ -62,21 +61,23 @@ export class PostDayFormComponent implements OnInit {
     );
 
     this.postform = this.fb.group({
-      welldone: [],
-      wrongdone: [],
+      welldone: ['', Validators.required],
+      wrongdone: ['', Validators.required],
       uncompleted: this.fb.array([]),
     });
 
     uncompletedTaskList.forEach((task: Task) =>
       this.uncompleted.push(
         this.fb.group({
-          title: this.fb.control(task.title),
-          schedule: this.fb.control(currentDate),
-          reason: this.fb.control(''),
+          title: [{ value: task.title, disabled: true }],
+          schedule: [getTomorrowDate(), Validators.required],
+          reason: [''],
         })
       )
     );
+  }
 
-    console.log(this.uncompleted.value);
+  public onComplete(): void {
+    console.log('onComplete', this.postform.value);
   }
 }

@@ -52,7 +52,15 @@
         </div>
         <div class="input-group">
           <span class="input-group-text">¿Cuándo lo harás?</span>
-          <input type="date" class="form-control" formControlName="schedule" />
+          <input
+            type="date"
+            class="form-control"
+            formControlName="schedule"
+            [ngClass]="{
+              'border-danger text-danger':
+                uncompleted.controls[i].status === 'INVALID'
+            }"
+          />
         </div>
         <textarea
           formControlName="reason"
@@ -65,13 +73,36 @@
     <hr class="text-primary" />
 
     <p>¿Qué cosas hice bien hoy?</p>
-    <textarea class="form-control" formControlName="welldone"></textarea>
+    <textarea
+      class="form-control"
+      formControlName="welldone"
+      [ngClass]="{
+        'border-danger text-danger':
+          postform.get('welldone')?.status === 'INVALID'
+      }"
+    ></textarea>
     <hr class="text-primary" />
 
     <p>
       ¿En qué cosas puedo mejorar o no respondí como debería?¿Cómo evito que se
       repita?
     </p>
-    <textarea class="form-control" formControlName="wrongdone"></textarea>
+    <textarea
+      class="form-control"
+      formControlName="wrongdone"
+      [ngClass]="{
+        'border-danger text-danger':
+          postform.get('wrongdone')?.status === 'INVALID'
+      }"
+    ></textarea>
   </div>
 </div>
+<button
+  class="btn btn-lg btn-primary w-100 my-2 animate__animated animate__backInRight"
+  (click)="onComplete()"
+  [disabled]="postform.status === 'INVALID'"
+  [ngClass]="{ 'btn-secondary': postform.status === 'INVALID' }"
+>
+  <i class="bi bi-calendar-check"></i> Terminar el día
+  <i class="bi bi-calendar-check"></i>
+</button>
